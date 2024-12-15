@@ -17,13 +17,14 @@ import {
     });
   }
   
-  export function useTodos(ids) {
+  export function useTodos(ids: (number | undefined)[] | undefined) {
     return useQueries({
       queries: (ids ?? []).map((id) => {
         return {
           queryKey: ["todo", { id }],
-          queryFn: () => getTodo(id),
+          queryFn: () => getTodo(id!),
         };
       }),
     });
   }
+  
